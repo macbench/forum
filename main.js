@@ -12,7 +12,7 @@ function LoadData() {
 		success: function (data) {
 
 			//	Limpa todos os objectos HTML filhos do tbody para mostrar a info actualizada puxada pela chamada AJAX
-			$('#MyTable tbody').empty();
+			$('#record').empty();
 
 			//Percorre os dados fornecidos pela reposta via AJAX
 			for (var i = 0; i < data.length; i++) {
@@ -22,7 +22,25 @@ function LoadData() {
 				//Mostrar os Post Principais
 				if (data[i].parent_comment == 0) {
 
-					var row = $('<tr><td><img src="avatar.jpg" width="30px" height="30px" /> <b>' + data[i].student + ' - ' + data[i].date + '</b></br><p style="padding-left:80px">' + data[i].post + '</br><a data-toggle="modal" data-id="' + commentId + '" title="Add this item" class="open-ReplyModal" href="#ReplyModal">Reply</a>' + '</p></td></tr>');
+					var row = 
+					$('<div class="container post-container d-flex mb-3">\
+							<img src="avatar.jpg" width="50px" height="50px"/>\
+							<div class="sub-container ms-3 d-flex flex-column">\
+								<div class="rounded msg-user bg-body-secondary py-2 px-3">\
+									<div class="user_name"><strong>'  + data[i].student +  '</strong></div>\
+									<p class="msg_post">' + data[i].post + '</p>\
+								</div>\
+								<div class="votes-replies d-flex justify-content-between">\
+									<div class="votes-replies-items d-flex gap-2">\
+										<div class="votes">Votos</div>\
+										<a href="#" data-id="' + commentId + '" title="Add this item" class="open-ReplyModal" data-bs-toggle="modal" data-bs-target="#ReplyModal">Reply</a>\
+										<div class="num-replies">3 Respostas</div>\
+									</div>\
+									<div class="date">'  + data[i].date + '</div>\
+								</div>\
+							</div>\
+					</div>')
+
 
 					// Encapsule| Adicione ao elemento tbody os objectos da variavel row como filhos da tbody 
 					$('#record').append(row);
@@ -31,7 +49,26 @@ function LoadData() {
 					//Mostrar as respostas dos Posts
 					for (var r = 0; r < data.length; r++) {
 						if (data[r].parent_comment == commentId) {
-							var comments = $('<tr><td style="padding-left:80px"><b><img src="avatar.jpg" width="30px" height="30px" />' + data[r].student + ' :<i> ' + data[r].date + '</i></b></br><p style="padding-left:40px">' + data[r].post + '</p></td></tr>');
+
+
+
+							var comments = 
+							$('<div class="ms-5 container post-container d-flex mb-3">\
+									<img src="avatar.jpg" width="50px" height="50px"/>\
+									<div class="sub-container ms-3 d-flex flex-column">\
+										<div class="rounded msg-user bg-body-secondary py-2 px-3">\
+											<div class="user_name"><strong>'  + data[r].student +  '</strong></div>\
+											<p class="msg_post">' + data[r].post + '</p>\
+										</div>\
+										<div class="votes-replies d-flex justify-content-between">\
+											<div class="votes-replies-items d-flex gap-2">\
+												<div class="votes">Votos</div>\
+											</div>\
+											<div class="date">'  + data[r].date + '</div>\
+										</div>\
+									</div>\
+							</div>')
+		
 						
 							// Encapsule| Adicione ao elemento tbody os objectos da variavel row como filhos da tbody 
 							$('#record').append(comments);

@@ -5,47 +5,44 @@
   <title>forum</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="main.js"></script>
 </head>
 
-<body>
+<body class="bg-dark">
 
   <!-- Modal -->
-  <div id="ReplyModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
+  <div class="modal fade" id="ReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Reply Question</h4>
+          <h5 class="modal-title" id="exampleModalLabel">Reply Question</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form name="frm1" method="post">
             <input type="text" id="commentid" name="Rcommentid">
-            <div class="form-group">
-              <label for="usr">Write your name:</label>
-              <input type="text" class="form-control" name="Rname" required>
+            <div class="mb-3">
+              <label for="Rname" class="form-label">Write your name:</label>
+              <input type="text" class="form-control" id="Rname" name="Rname" required>
             </div>
-            <div class="form-group">
-              <label for="comment">Write your reply:</label>
-              <textarea class="form-control" rows="5" name="Rmsg" required></textarea>
+            <div class="mb-3">
+              <label for="Rmsg" class="form-label">Write your reply:</label>
+              <textarea class="form-control" id="Rmsg" rows="5" name="Rmsg" required></textarea>
             </div>
-            <input type="button" id="btnreply" name="btnreply" class="btn btn-primary" value="Reply">
+            <button type="button" id="btnreply" name="btnreply" class="btn btn-primary">Reply</button>
           </form>
         </div>
       </div>
-
     </div>
   </div>
 
   <div class="container">
 
-    <div class="panel panel-default" style="margin-top:50px">
-      <div class="panel-body">
+    <div class="card" style="margin-top:50px">
+      <div class="card-body">
         <h3>Community forum</h3>
         <hr>
         <form name="frm" method="post">
@@ -58,18 +55,21 @@
             <label for="comment">Write your question:</label>
             <textarea class="form-control" rows="5" name="msg" required></textarea>
           </div>
-          <input type="button" id="butsave" name="save" class="btn btn-primary" value="Send">
+          <input type="button" id="butsave" name="save" class="btn btn-primary mt-3" value="Send">
         </form>
       </div>
     </div>
 
 
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h4>Recent questions</h4>
-        <table class="table" id="MyTable" style="background-color: #edfafa; border:0px;border-radius:10px">
+    <div class="card my-5">
+      <div class="card-body">
+        <h4 class="card-title py-3 mb-5 border-bottom border-primary border-5" style="width: 250px;">Recent questions</h4>
+        <!-- <table class="table table-primary table-bordered table-hover" id="MyTable" style="width="50px" ; border-radius: 10px;">
           <tbody id="record"></tbody>
-        </table>
+        </table> -->
+
+        <div id="record"></div>
+
       </div>
     </div>
 
