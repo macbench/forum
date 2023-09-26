@@ -1,5 +1,7 @@
+
+
 //Define quanto tempo é que a função LoadData deve ser executada a cada milisecond
-var myVar = setInterval(LoadData, 1000);
+var myVar = setInterval(LoadData, 5000);
 
 //
 // http_request = new XMLHttpRequest();
@@ -19,59 +21,113 @@ function LoadData() {
 
 				var commentId = data[i].id;
 
+				//====================================================================================
+				//	FUNÇÃO RESPONSÁVEL POR CALCULAR A DIFERENÇA DAS HORAS EM QUE O POST FOI FEITO
+				//====================================================================================
+				function calcularDiferencaTempo(dataString) {
+					// Converte a string em um objeto Date
+					const dataInscricao = new Date(dataString);
+				  
+					// Obtém a data atual
+					const dataAtual = new Date();
+				  
+					// Calcula a diferença em milissegundos
+					const diferencaEmMilissegundos = dataAtual - dataInscricao;
+				  
+					// Converte a diferença em segundos, minutos, horas, dias, semanas, meses e anos
+					const diferencaEmSegundos = Math.floor(diferencaEmMilissegundos / 1000);
+					const diferencaEmMinutos = Math.floor(diferencaEmSegundos / 60);
+					const diferencaEmHoras = Math.floor(diferencaEmMinutos / 60);
+					const diferencaEmDias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+					const diferencaEmSemanas = Math.floor(diferencaEmDias / 7);
+					const diferencaEmMeses = Math.floor(diferencaEmDias / 30.44); // Média de dias em um mês
+					const diferencaEmAnos = Math.floor(diferencaEmDias / 365);
+				  
+					if (diferencaEmSegundos < 60) {
+					  return `${diferencaEmSegundos} s`;
+					} else if (diferencaEmMinutos < 60) {
+					  return `${diferencaEmMinutos} min`;
+					} else if (diferencaEmHoras < 24) {
+					  return `${diferencaEmHoras} horas`;
+					} else if (diferencaEmDias === 0) {
+					  return "agora";
+					} else if (diferencaEmDias === 1) {
+					  return "ontem";
+					} else if (diferencaEmDias <= 7) {
+					  return `${diferencaEmDias} dias`;
+					} else if (diferencaEmSemanas <= 4) {
+					  return `${diferencaEmSemanas} semanas`;
+					} else if (diferencaEmMeses <= 12) {
+					  return `${diferencaEmMeses} meses`;
+					} else {
+					  return `${diferencaEmAnos} anos`;
+					}
+				  }
+
+
+				//====================================================================================00
+				let dataInscricao = data[i].date;
+				const hora_post = calcularDiferencaTempo(dataInscricao);
+				//====================================================================================00
+
 				//Mostrar os Post Principais
 				if (data[i].parent_comment == 0) {
 
-					var row = 
-					$('<div class="container post-container d-flex mb-3">\
+					var posts =
+						$('<div class="post-container d-flex mb-3">\
 							<img src="avatar.jpg" width="50px" height="50px"/>\
-							<div class="sub-container ms-3 d-flex flex-column">\
+							<div class="sub-container ms-3 d-flex flex-column" style ="max-width: 400px">\
 								<div class="rounded msg-user bg-body-secondary py-2 px-3">\
-									<div class="user_name"><strong>'  + data[i].student +  '</strong></div>\
+									<div class="user_name"><strong>'  + data[i].student + '</strong></div>\
 									<p class="msg_post">' + data[i].post + '</p>\
+									<div class="date text-end">'  + hora_post + '</div>\
 								</div>\
-								<div class="votes-replies d-flex justify-content-between">\
 									<div class="votes-replies-items d-flex gap-2">\
-										<div class="votes">Votos</div>\
+										<div class="votes text-success fw-bold d-flex align-items-center gap-1" role="button"><ion-icon name="caret-up-outline"></ion-icon> 3</div>\
 										<a href="#" data-id="' + commentId + '" title="Add this item" class="open-ReplyModal" data-bs-toggle="modal" data-bs-target="#ReplyModal">Reply</a>\
-										<div class="num-replies">3 Respostas</div>\
+										<div class="num-replies fw-bold text-secondary" role="button" id="show-replies"><ion-icon name="chatbubbles-outline"></ion-icon> 3 Respostas</div>\
 									</div>\
-									<div class="date">'  + data[i].date + '</div>\
-								</div>\
 							</div>\
 					</div>')
 
 
-					// Encapsule| Adicione ao elemento tbody os objectos da variavel row como filhos da tbody 
-					$('#record').append(row);
+					// Encapsule| Adicione ao elemento tbody os objectos da variavel posts como filhos da tbody 
+					$('#record').append(posts);
 
 
 					//Mostrar as respostas dos Posts
 					for (var r = 0; r < data.length; r++) {
+
+				//====================================================================================00
+						let dataInscricao = data[r].date;
+						const hora_replie = calcularDiferencaTempo(dataInscricao);
+				//====================================================================================00
+
 						if (data[r].parent_comment == commentId) {
 
 
 
-							var comments = 
-							$('<div class="ms-5 container post-container d-flex mb-3">\
-									<img src="avatar.jpg" width="50px" height="50px"/>\
-									<div class="sub-container ms-3 d-flex flex-column">\
-										<div class="rounded msg-user bg-body-secondary py-2 px-3">\
-											<div class="user_name"><strong>'  + data[r].student +  '</strong></div>\
-											<p class="msg_post">' + data[r].post + '</p>\
-										</div>\
-										<div class="votes-replies d-flex justify-content-between">\
-											<div class="votes-replies-items d-flex gap-2">\
-												<div class="votes">Votos</div>\
+							var replies =
+								$('<div class="ms-5 replies-container d-flex mb-3">\
+											<img src="avatar.jpg" width="35px" height="35px"/>\
+											<div class="sub-container ms-2 d-flex flex-column" style ="max-width: 400px">\
+												<div class="rounded msg-user bg-primary-subtle py-2 px-3">\
+													<div class="user_name"><strong>'  + data[r].student + '</strong></div>\
+													<p class="msg_post">' + data[r].post + '</p>\
+													<div class="date text-end">'  + hora_replie + '</div>\
+												</div>\
+												<div class="votes-replies d-flex">\
+													<div class="votes-replies-items d-flex gap-2">\
+														<div class="votes text-success fw-bold d-flex align-items-center gap-1" role="button"><ion-icon name="caret-up-outline"></ion-icon> 3</div>\
+													</div>\
+												</div>\
 											</div>\
-											<div class="date">'  + data[r].date + '</div>\
-										</div>\
-									</div>\
-							</div>')
-		
-						
+							    	</div>')
+
+
+
 							// Encapsule| Adicione ao elemento tbody os objectos da variavel row como filhos da tbody 
-							$('#record').append(comments);
+							$('#record').append(replies);
 						}
 					}
 				}
@@ -91,6 +147,24 @@ $(document).on("click", ".open-ReplyModal", function () {
 	var commentid = $(this).data('id');
 	$(".modal-body #commentid").val(commentid);
 });
+
+//Mostrar as respostas
+
+$(document).on("click", "#show-replies", () => {
+	// console.log('mostrar as respostas')
+	$('.replies-container').removeClass('d-none');
+
+})
+
+
+
+
+
+
+
+
+
+
 
 
 

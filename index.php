@@ -5,9 +5,11 @@
   <title>forum</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
 </head>
 
@@ -23,7 +25,7 @@
         </div>
         <div class="modal-body">
           <form name="frm1" method="post">
-            <input type="text" id="commentid" name="Rcommentid">
+            <input type="hidden" id="commentid" name="Rcommentid">
             <div class="mb-3">
               <label for="Rname" class="form-label">Write your name:</label>
               <input type="text" class="form-control" id="Rname" name="Rname" required>
@@ -39,9 +41,9 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="d-flex flex-column">
 
-    <div class="card" style="margin-top:50px">
+    <div class="card d-flex flex-column ">
       <div class="card-body">
         <h3>Community forum</h3>
         <hr>
@@ -64,17 +66,16 @@
     <div class="card my-5">
       <div class="card-body">
         <h4 class="card-title py-3 mb-5 border-bottom border-primary border-5" style="width: 250px;">Recent questions</h4>
-        <!-- <table class="table table-primary table-bordered table-hover" id="MyTable" style="width="50px" ; border-radius: 10px;">
-          <tbody id="record"></tbody>
-        </table> -->
-
         <div id="record"></div>
+
 
       </div>
     </div>
 
   </div>
 
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
