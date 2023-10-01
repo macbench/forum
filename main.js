@@ -1,7 +1,9 @@
 
 
 //Define quanto tempo é que a função LoadData deve ser executada a cada milisecond
-var myVar = setInterval(LoadData, 5000);
+// var myVar = setInterval(LoadData, 5000);
+//Some execute ao carregar a página uma vez apenas
+window.onload = LoadData()
 
 //
 // http_request = new XMLHttpRequest();
@@ -27,13 +29,13 @@ function LoadData() {
 				function calcularDiferencaTempo(dataString) {
 					// Converte a string em um objeto Date
 					const dataInscricao = new Date(dataString);
-				  
+
 					// Obtém a data atual
 					const dataAtual = new Date();
-				  
+
 					// Calcula a diferença em milissegundos
 					const diferencaEmMilissegundos = dataAtual - dataInscricao;
-				  
+
 					// Converte a diferença em segundos, minutos, horas, dias, semanas, meses e anos
 					const diferencaEmSegundos = Math.floor(diferencaEmMilissegundos / 1000);
 					const diferencaEmMinutos = Math.floor(diferencaEmSegundos / 60);
@@ -42,27 +44,29 @@ function LoadData() {
 					const diferencaEmSemanas = Math.floor(diferencaEmDias / 7);
 					const diferencaEmMeses = Math.floor(diferencaEmDias / 30.44); // Média de dias em um mês
 					const diferencaEmAnos = Math.floor(diferencaEmDias / 365);
-				  
-					if (diferencaEmSegundos < 60) {
-					  return `${diferencaEmSegundos} s`;
+
+					if (diferencaEmSegundos < 30) {
+						return `Agora`;
+					} else if (diferencaEmSegundos < 60) {
+						return `${diferencaEmSegundos} s`;
 					} else if (diferencaEmMinutos < 60) {
-					  return `${diferencaEmMinutos} min`;
+						return `${diferencaEmMinutos} min`;
 					} else if (diferencaEmHoras < 24) {
-					  return `${diferencaEmHoras} horas`;
+						return `${diferencaEmHoras} horas`;
 					} else if (diferencaEmDias === 0) {
-					  return "agora";
+						return "hoje";
 					} else if (diferencaEmDias === 1) {
-					  return "ontem";
+						return "ontem";
 					} else if (diferencaEmDias <= 7) {
-					  return `${diferencaEmDias} dias`;
+						return `${diferencaEmDias} dias`;
 					} else if (diferencaEmSemanas <= 4) {
-					  return `${diferencaEmSemanas} semanas`;
+						return `${diferencaEmSemanas} semanas`;
 					} else if (diferencaEmMeses <= 12) {
-					  return `${diferencaEmMeses} meses`;
+						return `${diferencaEmMeses} meses`;
 					} else {
-					  return `${diferencaEmAnos} anos`;
+						return `${diferencaEmAnos} anos`;
 					}
-				  }
+				}
 
 
 				//====================================================================================00
@@ -77,10 +81,10 @@ function LoadData() {
 						$('<div class="post-container d-flex mb-3">\
 							<img src="avatar.jpg" width="50px" height="50px"/>\
 							<div class="sub-container ms-3 d-flex flex-column" style ="max-width: 400px">\
-								<div class="rounded msg-user bg-body-secondary py-2 px-3">\
+								<div class="shape-msg msg-user bg-body-secondary py-2 px-3">\
 									<div class="user_name"><strong>'  + data[i].student + '</strong></div>\
 									<p class="msg_post">' + data[i].post + '</p>\
-									<div class="date text-end">'  + hora_post + '</div>\
+									<div class="date_post text-end">'  + hora_post + '</div>\
 								</div>\
 									<div class="votes-replies-items d-flex gap-2">\
 										<div class="votes text-success fw-bold d-flex align-items-center gap-1" role="button"><ion-icon name="caret-up-outline"></ion-icon> 3</div>\
@@ -98,10 +102,10 @@ function LoadData() {
 					//Mostrar as respostas dos Posts
 					for (var r = 0; r < data.length; r++) {
 
-				//====================================================================================00
+						//====================================================================================00
 						let dataInscricao = data[r].date;
 						const hora_replie = calcularDiferencaTempo(dataInscricao);
-				//====================================================================================00
+						//====================================================================================00
 
 						if (data[r].parent_comment == commentId) {
 
@@ -111,10 +115,10 @@ function LoadData() {
 								$('<div class="ms-5 replies-container d-flex mb-3">\
 											<img src="avatar.jpg" width="35px" height="35px"/>\
 											<div class="sub-container ms-2 d-flex flex-column" style ="max-width: 400px">\
-												<div class="rounded msg-user bg-primary-subtle py-2 px-3">\
+												<div class="shape-msg msg-user bg-primary-subtle py-2 px-3">\
 													<div class="user_name"><strong>'  + data[r].student + '</strong></div>\
 													<p class="msg_post">' + data[r].post + '</p>\
-													<div class="date text-end">'  + hora_replie + '</div>\
+													<div class="date_post text-end">'  + hora_replie + '</div>\
 												</div>\
 												<div class="votes-replies d-flex">\
 													<div class="votes-replies-items d-flex gap-2">\
