@@ -1,9 +1,9 @@
 
-
+let status_replie = 0
 //Define quanto tempo é que a função LoadData deve ser executada a cada milisecond
-// var myVar = setInterval(LoadData, 5000);
+var myVar = setInterval(LoadData, 5000);
 //Some execute ao carregar a página uma vez apenas
-window.onload = LoadData()
+// window.onload = LoadData()
 
 //
 // http_request = new XMLHttpRequest();
@@ -112,7 +112,7 @@ function LoadData() {
 
 
 							var replies =
-								$('<div class="ms-5 replies-container d-flex mb-3">\
+								$('<div class="ms-5 replies-container d-flex mb-3 ">\
 											<img src="avatar.jpg" width="35px" height="35px"/>\
 											<div class="sub-container ms-2 d-flex flex-column" style ="max-width: 400px">\
 												<div class="shape-msg msg-user bg-primary-subtle py-2 px-3">\
