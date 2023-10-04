@@ -79,7 +79,7 @@ function LoadData() {
 
 					var posts =
 						$('<div class="post-container d-flex mb-3">\
-							<img src="avatar.jpg" width="50px" height="50px"/>\
+							<img class = "rounded-circle" src="avatar.jpg" width="50px" height="50px"/>\
 							<div class="sub-container ms-3 d-flex flex-column" style ="max-width: 400px">\
 								<div class="shape-msg msg-user bg-body-secondary py-2 px-3">\
 									<div class="user_name"><strong>'  + data[i].student + '</strong></div>\
@@ -113,7 +113,7 @@ function LoadData() {
 
 							var replies =
 								$('<div class="ms-5 replies-container d-flex mb-3 ">\
-											<img src="avatar.jpg" width="35px" height="35px"/>\
+											<img class = "rounded-circle" src="avatar.jpg" width="35px" height="35px"/>\
 											<div class="sub-container ms-2 d-flex flex-column" style ="max-width: 400px">\
 												<div class="shape-msg msg-user bg-primary-subtle py-2 px-3">\
 													<div class="user_name"><strong>'  + data[r].student + '</strong></div>\
@@ -177,7 +177,10 @@ $(document).ready(function () {
 	$('#butsave').on('click', function () {
 		$("#butsave").attr("disabled", "disabled");
 		var id = document.forms["frm"]["Pcommentid"].value;
-		var name = document.forms["frm"]["name"].value;
+		//Pega o nome do user
+		// var name = document.forms["frm"]["name"].value; 
+		var name = "Anonymous"; // Vai ter de pegar o nome apartir da sessão $_SESSION['nome']
+
 		var msg = document.forms["frm"]["msg"].value;
 		if (name != "" && msg != "") {
 			$.ajax({
@@ -194,7 +197,7 @@ $(document).ready(function () {
 					if (dataResult.statusCode == 200) {
 						$("#butsave").removeAttr("disabled");
 						document.forms["frm"]["Pcommentid"].value = "";
-						document.forms["frm"]["name"].value = "";
+						// document.forms["frm"]["name"].value = "";
 						document.forms["frm"]["msg"].value = "";
 						LoadData();
 					}
