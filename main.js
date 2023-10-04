@@ -1,9 +1,9 @@
 
 let status_replie = 0
 //Define quanto tempo é que a função LoadData deve ser executada a cada milisecond
-var myVar = setInterval(LoadData, 5000);
+// var myVar = setInterval(LoadData, 5000);
 //Some execute ao carregar a página uma vez apenas
-// window.onload = LoadData()
+window.onload = LoadData()
 
 //
 // http_request = new XMLHttpRequest();
