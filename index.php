@@ -81,7 +81,7 @@
 
       </div>
 
-      <form name="frm" method="post" class="z-1 d-flex align-items-center justify-content-center p-1 border-bottom sticky-bottom bg-info w-100">
+      <form name="frm" method="post" class="z-1 d-flex align-items-center justify-content-center p-1 border-top sticky-bottom bg-dark w-100">
       <input type="hidden" id="commentid" name="Pcommentid" value="0">
 
 
