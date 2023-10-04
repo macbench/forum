@@ -6,3 +6,7 @@
     left: 0;
     /* box-shadow: inset 0 0 1px red; */
 }
+
+.shape-msg{
+    border-radius: 0 15px 15px 15px;
+}

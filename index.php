@@ -13,7 +13,7 @@
   <script src="main.js"></script>
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark d-flex justify-content-center">
 
   <!-- Modal -->
   <div class="modal fade" id="ReplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="d-flex flex-column">
+  <div class="d-flex flex-column" style="width:100%; max-width:900px">
 
     <div class="card d-flex flex-column ">
       <div class="card-body">
@@ -63,9 +63,9 @@
     </div>
 
 
-    <div class="card my-5">
+    <div class="card my-5 block-comment">
       <div class="card-body">
-        <h4 class="card-title py-3 mb-5 border-bottom border-primary border-5" style="width: 250px;">Recent questions</h4>
+        <h4 class="card-title py-3 mb-5 border-bottom border-primary border-5" style="width: 220px;">Recent questions</h4>
         <div id="record"></div>
 
 
